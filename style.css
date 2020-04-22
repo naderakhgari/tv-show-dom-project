@@ -1,4 +1,28 @@
 #root {
   color: red;
   background-color: #f1f2f6;
+  display: flex;
+  /* flex-direction: column;
+ */
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 10px;
 }
+/* 
+divEl.style.width = "450px";
+    divEl.style.backgroundColor = "white";
+    divEl.style.padding = "10px";
+    divEl.style.margin = "10px 0px";
+  }) */
+  .divElStyle{
+    width: 450px;
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pElStyle{
+    
+  }

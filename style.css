@@ -1,28 +1,36 @@
 #root {
-  color: red;
+  color: #535c68;
   background-color: #f1f2f6;
   display: flex;
-  /* flex-direction: column;
- */
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 10px;
+  padding: 10px 0px;
 }
-/* 
-divEl.style.width = "450px";
-    divEl.style.backgroundColor = "white";
-    divEl.style.padding = "10px";
-    divEl.style.margin = "10px 0px";
-  }) */
+
   .divElStyle{
-    width: 450px;
+    width: 350px;
     background-color: white;
-    padding: 10px;
-    margin: 10px 0px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: solid lightgrey 0.4px;
+    border-radius: 5px;
   }
+
   .pElStyle{
-    
+    padding: 10px;
+    width: 250px;
+  }
+
+  .h2ElStyle{
+    width: 330px;
+    margin: 0px 0px 10px 0px;
+    background-color: grey;
+    color: white;
+    font-family: 'Sanchez', serif;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius:5px;
+    height: 60px;
   }

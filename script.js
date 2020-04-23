@@ -4,37 +4,31 @@ function setup() {
   makePageForEpisodes(allEpisodes);
 }
 
+function headerData(episodeObj){//this function colects the data for header of episodes.
+  let seasonNum = episodeObj.season;
+  let episodeNum = episodeObj.number;
+  (seasonNum < 10) ? seasonNum = "0" + seasonNum : {};
+  (episodeNum < 10) ? episodeNum = "0" + episodeNum : {};
+  return `${episodeObj.name} - S${seasonNum}E${episodeNum}`
+}
+
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
-  
-  
-  episodeList.forEach(episode => {
-    let divEl = document.createElement("div");
+  episodeList.forEach(episode => {//Iterate through the array of episode.
 
-    rootElem.appendChild(divEl);
-let h2El = document.createElement("h2");
-divEl.appendChild(h2El);
-let seasonNum = episode.season;
-let episodeNum = episode.number;
-(seasonNum < 10) ? seasonNum = "0" + seasonNum : {};
-(episodeNum < 10) ? episodeNum = "0" + episodeNum : {};
+    let summaryText = episode.summary.replace(/<p>/g, " ");//remove the '<p>' from the summary.
+    let pEl = summaryText.replace(/<\/p>/g, " ");//remove the '</p>' from the summary.
 
-    h2El.innerHTML = `S${seasonNum}${episodeNum}`;
-    h2El.style.border = "solid 0.2px";
-    h2El.style.borderRadius = "5%";
-    let imgEl = document.createElement("img");
-    divEl.appendChild(imgEl);
-    imgEl.src = episode.image.medium;
-    let pEl = document.createElement("p");
-    pEl.className = "pElStyle";
-    divEl.appendChild(pEl);
-
-    pEl.innerHTML = episode.summary;
-    divEl.className = "divElStyle"
-    
+    //Create the elements by innerHTML and add to root div.
+    rootElem.innerHTML += `
+    <div class= "divElStyle">
+      <h2 class = "h2ElStyle ">${headerData(episode)}</h2>
+      <img src = ${episode.image.medium}>
+      <p class = "pElStyle">${pEl}</p>
+    </div>`;
   })
-  
 }
+
 
 window.onload = setup;
 

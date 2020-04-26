@@ -28,7 +28,7 @@ searchText.type = "text";
 
 selectEl.className = "selectEl xl-col-2 lg-col-2 md-col-3 sm-col-6 ";
 searchText.className = "searchInText xl-col-2 lg-col-2 md-col-3 sm-col-6";
-searchState.className = "searchState xl-col-3 lg-col-4 md-col-4 sm-col-12";
+searchState.className = "searchState xl-col-4 lg-col-4 md-col-4 sm-col-12";
 // document.body.className = "container col-12"
 
 rootElem.appendChild(searchDiv);

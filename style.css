@@ -1,68 +1,58 @@
+
 #root {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   background-color: #f1f2f6;
+  
 }
 
-.searchRoot{
-  width: 96%;
-  padding: 10px;
-  margin: 10px;    
-}
-
-.episodeRoot{
+.episodeDiv{
   background-color: #f1f2f6;
   color: #535c68;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding: 10px 0px;
-}
+  justify-content: center;}
 
 .divElStyle{
-  width: 350px;
   background-color: white;
   margin-bottom: 15px;
+  border: solid lightgrey 0.4px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid lightgrey 0.4px;
-  border-radius: 5px;
+  align-content: center;
+}
+.exDiv{
+  display: flex;
+  justify-content: center;
 }
 
 .pElStyle{
-  padding: 10px;
-  width: 250px;
+  font-family: 'Sanchez', serif;
 }
 
 .h2ElStyle{
-  width: 330px;
-  margin: 0px 0px 10px 0px;
   background-color: grey;
   color: white;
   font-family: 'Sanchez', serif;
-  padding: 10px;
   border-top-left-radius: 5px;
   border-top-right-radius:5px;
-  height: 60px;
+  height: 60px;margin: 0;
 }
 
 .searchDiv{
-  width: 96%;
-  padding: 10px;
-  margin: 10px;
   background-color: #f1f2f6;
   color: #535c68;
-
+  display: flex;
+  justify-content: space-around;
 }
 
 .searchInText{
-  width: 200px;
-  height: 30px;
+  height: 27px;
   padding: 5px;
   margin: 20px 10px 10px 10px;
   border-radius: 1px;
-  font-size: 30px;
+  font-size: 20px;
   color: #535c68;
 
 }
@@ -73,3 +63,14 @@
   font-family: 'Sanchez', serif;
   font-size: 32px;
 }
+.selectEl{
+  height: 40px;
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border-radius: 1px;
+  font-family: 'Sanchez', serif;
+}
+
+/* *{
+  border: solid green 1px;
+} */

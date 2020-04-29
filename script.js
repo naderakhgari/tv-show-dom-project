@@ -1,10 +1,21 @@
 //You can edit ALL of the code here
 function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
-  searchEpisode(allEpisodes);
-  addSelectForEpisodes(allEpisodes);
+  fetch("https://api.tvmaze.com/shows/5/episodes")
+  .then(Response => {
+    return Response.json();
+  })
 
+  .then(data =>{
+    console.log(data);
+    const allEpisodes = data;
+    makePageForEpisodes(allEpisodes);
+    searchEpisode(allEpisodes);
+    addSelectForEpisodes(allEpisodes);
+  })
+
+  .then(error =>{
+    console.log(error);
+  })
 
 }
 
@@ -57,9 +68,9 @@ function makePageForEpisodes(episodeList) {
     episodeDiv.innerHTML += `
     <div class= " exDiv  sm-col-12 md-col-6 lg-col-4 xl-col-3">
       <div class = "divElStyle col-11 sm-col-11 md-col-11 lg-col-11 xl-col-11">
-      <h2 class = "h2ElStyle col-12 sm-col-12 md-col-12 lg-col-12 xl-col-12">${headerData(episode)}</h2>
+      <h2 class = "h2ElStyle col-12 sm-col-6 md-col-12 lg-col-12 xl-col-12">${headerData(episode)}</h2>
       <img src = ${episode.image.medium} >
-      <p class = "pElStyle col-11 sm-col-11 md-col-11 lg-col-11 xl-col-11">${pEl}</p>
+      <p class = "pElStyle col-11 sm-col-6 md-col-11 lg-col-11 xl-col-11">${pEl}</p>
       </div>
     </div>`;
   })
@@ -92,9 +103,13 @@ function addSelectForEpisodes(episodeList){
   });
 
   selectEl.addEventListener('change', ()=>{//show the selected episode .
-    selectEpisodeToShow = episodeList.filter(ep => (selectEl.value.indexOf(ep.name) > -1) ? true : false);
+    selectEpisodeToShow = episodeList.filter(ep =>(selectEl.value.indexOf(ep.name) > -1) ? true : false);
     makePageForEpisodes(selectEpisodeToShow);
     searchState.innerHTML = `Displaying ${selectEpisodeToShow.length}/${episodeList.length} episodes`;
+    if (selectEl.value == "All Episodes"){
+      makePageForEpisodes(episodeList);
+      searchState.innerHTML = `Displaying ${episodeList.length}/${episodeList.length} episodes`;
+     } 
   });
 }
 

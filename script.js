@@ -1,22 +1,24 @@
 //You can edit ALL of the code here
-function setup() {
-  fetch("https://api.tvmaze.com/shows/5/episodes")
-  .then(Response => {
-    return Response.json();
-  })
 
-  .then(data =>{
-    console.log(data);
-    const allEpisodes = data;
+function setup() {
+  let allShows = getAllShows();
+  sortOn(allShows, "name");
+  addShows(allShows);
+
+  fetchEpisodes(allShows[0].id)
+}
+
+function fetchEpisodes(showId){
+  searchText.placeholder = "search...";
+  selectEpisode.innerHTML = `<option>All Episodes</option>`;
+  fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
+  .then(response => response.json())
+  .then(allEpisodes =>{
     makePageForEpisodes(allEpisodes);
     searchEpisode(allEpisodes);
     addSelectForEpisodes(allEpisodes);
   })
-
-  .then(error =>{
-    console.log(error);
-  })
-
+  .catch(error => console.log(error));  
 }
 
 const rootElem = document.getElementById("root");
@@ -27,27 +29,45 @@ let episodeDiv = document.createElement("div");
 searchDiv.className = "searchDiv row";
 episodeDiv.className = "episodeDiv row";
 
-let selectEl = document.createElement("select");
+let selectEpisode = document.createElement("select");
+let selectShow = document.createElement("select");
 let searchText = document.createElement("input");
 let searchState = document.createElement("label");
 
-selectEl.innerHTML = `<option>All Episodes</option>`;
-searchText.placeholder = "search..";
-searchState.innerHTML = 'Displaying episodes';
+selectShow.innerHTML = `<option>All shows</option>`;
+selectEpisode.innerHTML = `<option>All Episodes</option>`;
+searchText.placeholder = "search...";
 
 searchText.type = "text";
 
-selectEl.className = "selectEl xl-col-2 lg-col-2 md-col-3 sm-col-6 ";
+selectShow.className = "select xl-col-2 lg-col-2 md-col-3 sm-col-6"
+selectEpisode.className = "select xl-col-2 lg-col-2 md-col-3 sm-col-6 ";
 searchText.className = "searchInText xl-col-2 lg-col-2 md-col-3 sm-col-6";
 searchState.className = "searchState xl-col-4 lg-col-4 md-col-4 sm-col-12";
-// document.body.className = "container col-12"
 
 rootElem.appendChild(searchDiv);
 rootElem.appendChild(episodeDiv);
 
-searchDiv.appendChild(selectEl);
+searchDiv.appendChild(selectShow);
+searchDiv.appendChild(selectEpisode);
 searchDiv.appendChild(searchText);
 searchDiv.appendChild(searchState);
+
+function sortOn (arr, name) {
+  arr.sort (function (a, b){ 
+    return a[name].localeCompare(b[name]);
+  });
+  return arr;
+}
+
+function addShows(showList){
+
+  showList.forEach(show => {
+    selectShow.innerHTML += `<option value="${show.id}">${show.name}</option>`
+  })
+  
+  selectShow.addEventListener('change', changeEvent => fetchEpisodes(changeEvent.target.value));
+}
 
 function headerData(episodeObj){//this function colects the data for header of episodes.
   let seasonNum = episodeObj.season;
@@ -77,6 +97,7 @@ function makePageForEpisodes(episodeList) {
 }
 
 function searchEpisode(episodeList){// This function will create search part.
+  searchState.innerHTML = `Displaying ${episodeList.length}episodes`;
   searchText.addEventListener('input',()=>{// This function will comare search text with episodes summary and name
     const filteredEpisodeList = episodeList.filter(episode => {
       let lowerSummary = episode.summary.toLowerCase();
@@ -90,6 +111,7 @@ function searchEpisode(episodeList){// This function will create search part.
     })
     searchState.innerHTML = `Displaying ${filteredEpisodeList.length}/${episodeList.length} episodes`;
     makePageForEpisodes(filteredEpisodeList);
+    selectEpisode.value = "All Episodes";
   });
 }
 
@@ -97,23 +119,28 @@ let allHeaders = [];
 let selectEpisodeToShow =[];
 
 function addSelectForEpisodes(episodeList){
-  episodeList.forEach(episode => {//this loop will show the episodes title on select input.
-    selectEl.innerHTML += `<option>${headerData(episode)}</option>`;
-    allHeaders.push(headerData(episode));
-  });
-
-  selectEl.addEventListener('change', ()=>{//show the selected episode .
-    selectEpisodeToShow = episodeList.filter(ep =>(selectEl.value.indexOf(ep.name) > -1) ? true : false);
+  addSelectElement(episodeList);
+  selectEpisode.addEventListener('change', ()=>{//show the selected episode .
+    searchText.value= "";
+    searchText.placeholder = "search...";
+    selectEpisodeToShow = episodeList.filter(ep =>(selectEpisode.value.indexOf(ep.name) > -1) ? true : false);
     makePageForEpisodes(selectEpisodeToShow);
     searchState.innerHTML = `Displaying ${selectEpisodeToShow.length}/${episodeList.length} episodes`;
-    if (selectEl.value == "All Episodes"){
+    if (selectEpisode.value == "All Episodes"){
       makePageForEpisodes(episodeList);
       searchState.innerHTML = `Displaying ${episodeList.length}/${episodeList.length} episodes`;
      } 
+     
+  });
+}
+
+function addSelectElement(episodeList){
+  // selectEpisode.innerHTML = "";
+  selectEpisode.innerHTML = `<option>All Episodes</option>`;
+  episodeList.forEach(episode => {//this loop will show the episodes title on select input.
+    selectEpisode.innerHTML += `<option>${headerData(episode)}</option>`;
+    allHeaders.push(headerData(episode));
   });
 }
 
 window.onload = setup;
-
-
-

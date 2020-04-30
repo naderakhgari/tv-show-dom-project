@@ -1,6 +1,7 @@
 //You can edit ALL of the code here
 
 function setup() {
+  controlTools()
   let allShows = getAllShows();
   sortOn(allShows, "name");
   addShows(allShows);
@@ -45,6 +46,7 @@ selectEpisode.className = "select xl-col-2 lg-col-2 md-col-3 sm-col-6 ";
 searchText.className = "searchInText xl-col-2 lg-col-2 md-col-3 sm-col-6";
 searchState.className = "searchState xl-col-4 lg-col-4 md-col-4 sm-col-12";
 
+function controlTools(){//Append the control tools to show on the root div.
 rootElem.appendChild(searchDiv);
 rootElem.appendChild(episodeDiv);
 
@@ -52,15 +54,16 @@ searchDiv.appendChild(selectShow);
 searchDiv.appendChild(selectEpisode);
 searchDiv.appendChild(searchText);
 searchDiv.appendChild(searchState);
-
-function sortOn (arr, name) {
-  arr.sort (function (a, b){ 
-    return a[name].localeCompare(b[name]);
-  });
-  return arr;
 }
 
-function addShows(showList){
+function sortOn (shows, name) {//Alphabeticaly and case insensitive sort the shows by name. 
+  shows.sort (function (a, b){ 
+    return a[name].localeCompare(b[name]);
+  });
+  return shows;
+}
+
+function addShows(showList){//Add the names and ids of the shows from show list to select show.
 
   showList.forEach(show => {
     selectShow.innerHTML += `<option value="${show.id}">${show.name}</option>`
@@ -86,11 +89,11 @@ function makePageForEpisodes(episodeList) {
 
     //Create the elements by innerHTML and add to episodeDiv div.
     episodeDiv.innerHTML += `
-    <div class= " exDiv  sm-col-12 md-col-6 lg-col-4 xl-col-3">
-      <div class = "divElStyle col-11 sm-col-11 md-col-11 lg-col-11 xl-col-11">
-      <h2 class = "h2ElStyle col-12 sm-col-6 md-col-12 lg-col-12 xl-col-12">${headerData(episode)}</h2>
-      <img src = ${episode.image.medium} >
-      <p class = "pElStyle col-11 sm-col-6 md-col-11 lg-col-11 xl-col-11">${pEl}</p>
+    <div class="exDiv  sm-col-12 md-col-6 lg-col-4 xl-col-3">
+      <div class="divElStyle col-11 sm-col-11 md-col-11 lg-col-11 xl-col-11">
+      <h2 class="h2ElStyle col-12 sm-col-12 md-col-12 lg-col-12 xl-col-12">${headerData(episode)}</h2>
+      <img src=${episode.image.medium} class=col-11 sm-col-11 md-col-11 lg-col-11 xl-col-11 img>
+      <p class="pElStyle col-11 sm-col-11 md-col-11 lg-col-11 xl-col-11">${pEl}</p>
       </div>
     </div>`;
   })

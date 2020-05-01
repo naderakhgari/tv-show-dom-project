@@ -11,7 +11,7 @@
   flex-wrap: wrap;
   justify-content: center;
   z-index: 0;
-  margin-top: 7%;
+  margin-top: 75%;
 }
 
 .divElStyle{
@@ -76,7 +76,7 @@
   padding: 10px;
   margin: 10px;
   font-family: 'Sanchez', serif;
-  font-size: 32px;
+  font-size: 25px;
 }
 
 .select{

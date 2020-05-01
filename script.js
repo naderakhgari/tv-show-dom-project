@@ -41,10 +41,10 @@ searchText.placeholder = "search...";
 
 searchText.type = "text";
 
-selectShow.className = "select xl-col-2 lg-col-2 md-col-3 sm-col-6"
-selectEpisode.className = "select xl-col-2 lg-col-2 md-col-3 sm-col-6 ";
-searchText.className = "searchInText xl-col-2 lg-col-2 md-col-3 sm-col-6";
-searchState.className = "searchState xl-col-4 lg-col-4 md-col-4 sm-col-12";
+selectShow.className = "select xl-col-2 lg-col-2 md-col-3 sm-col-4 col-10"
+selectEpisode.className = "select xl-col-2 lg-col-2 md-col-3 sm-col-4 col-10";
+searchText.className = "searchInText xl-col-2 lg-col-2 md-col-3 sm-col-3 col-10";
+searchState.className = "searchState xl-col-4 lg-col-5 md-col-6 sm-col-7 col-12";
 
 function controlTools(){//Append the control tools to show on the root div.
 rootElem.appendChild(searchDiv);

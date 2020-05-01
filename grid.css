@@ -26,12 +26,18 @@
     .container {
       max-width: 540px;
     }
+    .episodeDiv{
+      margin-top: 30%;
+    }
   }
   
   @media (min-width: 768px) {
     /* md */
     .container {
       max-width: 720px;
+    }
+    .episodeDiv{
+      margin-top: 20%;
     }
   }
   
@@ -40,12 +46,18 @@
     .container {
       max-width: 960px;
     }
+    .episodeDiv{
+      margin-top: 8%;
+    }
   }
   
   @media (min-width: 1200px) {
     /* xl */
     .container {
       max-width: 1140px;
+    }
+    .episodeDiv{
+      margin-top: 7%;
     }
   }
   

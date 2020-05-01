@@ -2,7 +2,6 @@
 #root {
   display: grid;
   background-color: #f1f2f6;
-  
 }
 
 .episodeDiv{
@@ -10,7 +9,10 @@
   color: #535c68;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;}
+  justify-content: center;
+  z-index: 0;
+  margin-top: 7%;
+}
 
 .divElStyle{
   background-color: white;
@@ -22,6 +24,7 @@
   align-items: center;
   align-content: center;
 }
+
 .exDiv{
   display: flex;
   justify-content: center;
@@ -45,6 +48,7 @@
   height: 60px;
   margin: 0 0 10px 0;
 }
+
 .h2ElStyle:hover{
   background-color: darkgray;
 }
@@ -54,6 +58,9 @@
   color: #535c68;
   display: flex;
   justify-content: space-around;
+  position: fixed;
+  z-index: 1;
+  top: 0px;
 }
 
 .searchInText{
@@ -63,7 +70,6 @@
   border-radius: 1px;
   font-size: 20px;
   color: #535c68;
-
 }
 
 .searchState{
@@ -72,6 +78,7 @@
   font-family: 'Sanchez', serif;
   font-size: 32px;
 }
+
 .select{
   height: 40px;
   padding: 10px;
@@ -79,7 +86,3 @@
   border-radius: 1px;
   font-family: 'Sanchez', serif;
 }
-
-/* *{
-  border: solid green 1px;
-} */

@@ -35,6 +35,7 @@ searchState.style.display = "none";
 
 function setup() {
   let allShows = getAllShows();
+  console.log(allShows);
   sortOn(allShows, "name");
   makePageForShows(allShows);
   addShow(allShows);
@@ -81,10 +82,7 @@ function searchShows(allShow) {
   searchText.addEventListener("input", () => {
     let addSearchedShows = allShow.filter((show) =>
       show.name.indexOf(searchText.value) > -1 ||
-      show.summary.indexOf(searchText.value) > -1
-        ? true
-        : false
-    );
+      show.summary.indexOf(searchText.value) > -1 ? true : false);
     addShow(addSearchedShows);
     makePageForShows(addSearchedShows);
   });

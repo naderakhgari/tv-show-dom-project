@@ -138,8 +138,7 @@ function makePageForEpisodes(episodeList) {
   });
 }
 
-function headerData(episodeObj) {
-  //this function colects the data for header of episodes.
+function headerData(episodeObj) {//this function colects the data for header of episodes.
   let seasonNum = episodeObj.season;
   let episodeNum = episodeObj.number;
   seasonNum < 10 ? (seasonNum = "0" + seasonNum) : {};
@@ -147,11 +146,9 @@ function headerData(episodeObj) {
   return `${episodeObj.name} - S${seasonNum}E${episodeNum}`;
 }
 
-function searchEpisode(episodeList) {
-  // This function will create search part.
+function searchEpisode(episodeList) {// This function will create search part.
   searchState.innerHTML = `Displaying ${episodeList.length}episodes`;
-  searchText.addEventListener("input", () => {
-    // This function will comare search text with episodes summary and name
+  searchText.addEventListener("input", () => {// This function will comare search text with episodes summary and name
     const filteredEpisodeList = episodeList.filter((episode) => {
       let lowerSummary = episode.summary.toLowerCase();
       let lowerHeader = headerData(episode).toLowerCase();
@@ -174,8 +171,7 @@ function searchEpisode(episodeList) {
 function addSelectForEpisodes(episodeList) {
   let selectEpisodeToShow = [];
   addEpisodesToSelect(episodeList);
-  selectEpisode.addEventListener("change", () => {
-    //show the selected episode .
+  selectEpisode.addEventListener("change", () => {//show the selected episode .
     searchText.value = "";
     selectEpisodeToShow = episodeList.filter((episode) =>
       selectEpisode.value.indexOf(episode.name) > -1 ? true : false
@@ -191,8 +187,7 @@ function addSelectForEpisodes(episodeList) {
 
 function addEpisodesToSelect(episodeList) {
   selectEpisode.innerHTML = `<option>All Episodes</option>`;
-  episodeList.forEach((episode) => {
-    //this loop will show the episodes title on select input.
+  episodeList.forEach((episode) => {//this loop will show the episodes title on select input.
     selectEpisode.innerHTML += `<option>${headerData(episode)}</option>`;
   });
 }

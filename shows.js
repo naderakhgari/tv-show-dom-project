@@ -53,7 +53,7 @@ function getOneShow() {
   };
 }
 
-function getAllShows() {
+function getAllShows1() {
   return [
     {
       id: 1,

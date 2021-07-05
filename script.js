@@ -33,8 +33,13 @@ searchDiv.appendChild(searchState);
 selectEpisode.style.display = "none";
 searchState.style.display = "none";
 
-function setup() {
-  let allShows = getAllShows();
+const getAllShows=async()=>{
+  const response = await fetch(' https://api.tvmaze.com/shows')
+  return await response.json()
+  }
+
+async function setup() {
+  let allShows = await getAllShows();
   console.log(allShows);
   sortOn(allShows, "name");
   makePageForShows(allShows);
@@ -191,5 +196,6 @@ function addEpisodesToSelect(episodeList) {
     selectEpisode.innerHTML += `<option>${headerData(episode)}</option>`;
   });
 }
+
 
 window.onload = setup;
